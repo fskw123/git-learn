@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    // 函数调用的this 问题
+    // 父组件向子组件传递参数，函数，事件
+    // 1,prop
+    // 2,this.$refs.refName.method
+    // 3,this.$children
+    // 子组件向父组件传递参数，函数，事件
+    // 1,emit
+    // 2, $parent
+    // 3,
+// 父子组件之间传递函数
+    // 1,
+    // 2, prop
+export default {
+    props: {
+        fatherMethod: {
+            type: Function,
+            default: null
+        }
+    },
+    methods: {
+        childMethod() {
+            if (this.fatherMethod) {
+                this.fatherMethod();
+            }
+        }
+    }
+};
+    // 3, this.$parent.fatherMethod()子组件调用父组件方法;
+
+    // 4, emit触发事件
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

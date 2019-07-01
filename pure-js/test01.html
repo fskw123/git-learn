@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border: 1px solid black;
+    }
+    button {
+        width: 40px;
+        height: 30px;
+        background-color: green;
+    }
+    .floatdiv {
+        float: left;
+        width: 50px;
+        height: 40px;
+        background-color: dodgerblue;
+    }
+</style>
+<div class="box">
+    <button></button>
+    <div class="floatdiv"></div>
+</div>
+<script>
+const str = 'asddfgdfwwqeweqwezczxcsdfgdgd';
+console.log(str[0]); // 字符串元素类似数组底标签
+let arr = str.split('');
+let obj = {};
+let max = {word: '', count: 0};
+arr.forEach((i) => {
+    if(obj[i]) {
+        obj[i] += 1;
+    } else {
+        obj[i] = 1
+    }
+    if (obj[i] > max.count) {
+        max.count = obj[i];
+        max.word = i;
+    }
+});
+console.log(max.word, max.count);
+
+console.log(typeof null);
+</script>
+</body>
+</html>

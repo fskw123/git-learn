@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    var App = {
+       data() {
+           return {
+               img: [
+                   './img/img01.jpg',
+                   './img/img02.jpg',
+                   './img/img03.jpg',
+                   './img/img04.jpg',
+               ],
+               i: 0,
+               m: false,
+               out: false,
+               ok: true,
+           }
+
+       },
+       template: ' <div class="container">' +
+           '<button @click="moveLeft()" ><</button>' +
+           '<div class="img-container"><img :class="{swipe: ok, min: m, mout: out}" :src="img[i]" ></div>' +
+           '<button @click="moveRight()"> ></button>' +
+           '</div>',
+       methods: {
+           runCallback(a) {
+               a = false
+           },
+           moveRight(runCallback) {
+               this.m = !this.m
+               console.log(this.m)
+               if (this.i <= 2) {
+                   this.i++
+               }else {
+                   this.i = 0
+               }
+               console.log(this.i,this.m)
+               runCallback(this.m)
+           },
+
+           moveLeft(runCallback) {
+               this.out = true
+               if (this.i >= 1) {
+                   this.i--
+               }else {
+                   this.i = 3
+               }
+               console.log(this.i)
+               runCallback(this.out)
+           },
+
+       }
+   }
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        },
+        template: "<App/>",
+        components: {
+            App: App,
+        }
+    })
+</script>
+<style>
+    img.swipe {
+        width: 400px;
+        height: 300px;
+    }
+    img.min {
+        position: relative;
+        animation: moveIn 1s;
+    }
+    img.mout {
+        position: relative;
+        animation: moveOut 1s;
+    }
+
+    @keyframes moveIn {
+        from { right: 0;}
+        to { right: 400px;}
+    }
+    @keyframes moveOut {
+        from { left: 0;}
+        to { left: 400px;}
+    }
+    div.container {
+        margin: 0;
+        padding: 0;
+        width: 550px;
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+    div.img-container {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+</style>
+</body>
+</html>
+

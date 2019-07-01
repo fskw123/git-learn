@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--视口控制-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--兼容-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--http文件头-->
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Document</title>
+</head>
+<body>
+<div style="width: 50%; border: 1px solid black;">
+    <!--em相当于当前对象的font-size-->
+    <h1 style="height: 4em; width: 10em; border: 1px solid black">
+        h1节点em测试
+    </h1>
+    <!--em相当于根对象html的font-size-->
+    <h1 style="height: 4rem; width: 10rem; border: 1px solid black">
+        h1节点rem测试
+    </h1>
+</div>
+<br><br><br>
+<div style="width: 50%; border: 1px solid black; font-size: 20px;">
+    <!--em相当于当前对象的font-size, 没有就父级元素-->
+    <h1 style="height: 4em; width: 10em; border: 1px solid black">
+        h1节点em测试
+    </h1>
+    <!--rem相当于根对象html的font-size-->
+    <h1 style="height: 4rem; width: 10rem; border: 1px solid black">
+        h1节点rem测试
+    </h1>
+</div>
+</body>
+</html>

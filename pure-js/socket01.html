@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web socket</title>
+</head>
+<body>
+<ul id='dialogue'></ul>
+<input type="text">
+<input type="submit">
+<script>
+    var ws = new WebSocket("./socket01.html");
+
+    ws.onopen = function()
+    {
+        ws.send("发送数据");
+        alert("数据发送中...");
+    };
+
+    ws.onmessage = function (evt)
+    {
+        var received_msg = evt.data;
+        alert("数据已接收...");
+    };
+
+    ws.onclose = function()
+    {
+        alert("连接已关闭...");
+    };
+</script>
+</body>
+</html>

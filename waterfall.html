@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>waterfall</title>
+    <script SRC="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div id="img-container">
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+        <div class="box img01">
+            <img src="./img/img01.jpg" >
+        </div>
+        <div class="box img02">
+            <img src="./img/img02.jpg" >
+        </div>
+        <div class="box img03">
+            <img src="./img/img03.jpg" >
+        </div>
+        <div class="box img04">
+            <img src="./img/img04.jpg" >
+        </div>
+
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $(window).on('load', function () {
+            imgLocation()
+            var dataImg = {"data": [{'src': 'img01.jpg'},{'src': 'img02.jpg'},{'src': 'img03.jpg'},{'src': 'img04.jpg'}, ]}
+            window.onscroll = function () {
+                if (scrollSide()) {
+                    $.each(dataImg.data, function (index, value) {
+                        var box = $('<div>').addClass('box').appendTo('#img-container')
+                        $('<img>').attr("src", "./img/" + $(value).attr('src')).appendTo(box)
+
+                    })
+                    imgLocation()
+                }
+            }
+        })
+    })
+    function scrollSide() {
+        var box =$('.box')
+        var lastboxHeight = box.last().get(0).offsetTop + Math.floor(box.last().height()/2)
+        var documentHeight = $(document).width()
+        var scrollHeight = $(window).scrollTop()
+        console.log("滚起来")
+        return (lastboxHeight < documentHeight + scrollHeight)? true:false
+    }
+    function imgLocation() {
+        var box = $('.box')
+        var boxWidth = box.eq(0).width()
+        var num = Math.floor($(window).width()/boxWidth)
+        var boxArr = []
+        box.each(function (index, value) {
+            var boxHeight = box.eq(index).height()
+            if (index < (num - 1) ) {
+                boxArr[index] = boxHeight
+                console.log(boxArr)
+            } else {
+                var minBoxHeight = Math.min.apply(null, boxArr)
+                var minBoxIndex = $.inArray(minBoxHeight, boxArr)
+                console.log(minBoxIndex, minBoxHeight)
+                $(value).css({
+                    "position": 'absolute',
+                    "top": minBoxHeight + 20,
+                    "left": box.eq(minBoxIndex).position().left
+                })
+                boxArr[minBoxIndex] += box.eq(index).height()
+            }
+        })
+    }
+
+</script>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    div.box {
+        position: relative;
+        float: left;
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 6px;
+        box-shadow: 0 0 5px #ccc;
+        border-radius: 5px;
+    }
+    img {
+        width: 200px;
+
+    }
+    div.img01>img {
+        height: 60px;
+    }
+    div.img02>img {
+        height: 150px;
+    }
+    div.img03>img {
+        height: 80px;
+    }
+    div.img04>img {
+        height: 250px;
+    }
+</style>
+</html>

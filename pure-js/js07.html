@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create event</title>
+</head>
+<body>
+<form>
+    <textarea></textarea>
+</form>
+<script>
+
+    const form = document.querySelector('form');
+    const textarea = document.querySelector('textarea');
+
+
+    const eventAwesome = new CustomEvent('awesome', {
+        bubbles: true,
+        detail: { text: () => textarea.value }
+    });
+
+    console.log(eventAwesome);
+    document.addEventListener('keydown', e => console.log(e) );
+    form.addEventListener('awesome', e => console.log(e.detail.text()));
+
+    textarea.addEventListener('input', e => e.target.dispatchEvent(eventAwesome));
+    textarea.addEventListener('input', e => console.log(e.data));
+
+</script>
+</body>
+</html>

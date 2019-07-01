@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery01</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btn1").click(function(){
+                $("#test1").text(function(i,origText){
+                    return "旧文本: " + origText + " 新文本: Hello world! (index: " + i + ")";
+                });
+            });
+
+            $("#btn2").click(function(){
+                $("#test2").html(function(i,origText){
+                    return "旧 html: " + origText + " 新 html: Hello <b>world!</b> (index: " + i + ")";
+                });
+            });
+            $("button").click(function(){
+                $("#runoob").attr({
+                    "href" : "http://www.runoob.com/jquery",
+                    "title" : "jQuery 教程"
+                });
+                // 通过修改的 title 值来修改链接名称
+                title =  $("#runoob").attr('title');
+                $("#runoob").html(title);
+            });
+            // dom 操作
+            function appendText(){
+                var txt1="<p>文本。</p>";              // 使用 HTML 标签创建文本
+                var txt2=$("<p></p>").text("文本。");  // 使用 jQuery 创建文本
+                var txt3=document.createElement("p");
+                txt3.innerHTML="文本。";               // 使用 DOM 创建文本 text with DOM
+                $("body").append(txt1,txt2,txt3);        // 追加新元素
+            }
+            $("button").click(function(){
+                $("p").css({"background-color":"yellow","font-size":"200%"});
+            });
+
+        })
+    </script>
+</head>
+<body>
+<p id="test1">这是一个有 <b>粗体</b> 字的段落。</p>
+<p id="test2">这是另外一个有 <b>粗体</b> 字的段落。</p>
+<button id="btn1">显示 新/旧 文本</button>
+<button id="btn2">显示 新/旧 HTML</button>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+div.box {
+    background-color: #bcffa9;
+    width: 120px;
+    height: 200px;
+    border: 1px solid #d9f1ff;
+    text-align: center;
+    padding: 5px;
+}
+div.box h3 {
+    background-color: #bac5d9;
+}
+div.box p {
+    background-color: #f1b6cf;
+}
+div.box input {
+    background-color: #e9f4a8;
+    width: 60px;
+    margin-top: 10px;
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var a = ['this', 'is', 'my', 'zone'];
+    var b = 'hello world';
+    var p1 = {
+        name: 'xiaoming',
+        height: 170,
+        favor: 'basketball',
+    }
+    console.log(a.join(' '));
+    console.log(b.split(' '));
+    var c = b.split(' ');
+    console.log(c.reverse());
+    /*
+    数组常用的方法， push, unshift, shift, pop, reverse, join, toString, indexOf, valueOf,
+    slice, splice, concat, sort
+     */
+
+    /*
+    字符串常用的方法， split, charAt, replace, indexOf, concat, '+', match, search, slice, valueOf
+    sub, substr, substring
+     */
+
+    /*
+    正则语法 / / 中 *, $, (), [], {}, ^, d, w, a-z, \转义(空格， )，大小写,
+    1, 限定符 *, ?, +， {n}, {n,}, {n,m}
+    2, 定位符 ^, $, \b, \B
+    3, 或 |
+    4, (), (?:), (?=), (?!), (?<=) (?<!)
+    5, [xyz], [^xyz], [1-9], [^1-9]
+    6, \d, \D, \w, \W
+
+    A, 例子
+    1， ^[a-z0-9_-]{3, 15}
+    2, ^[0-9]+abs$
+
+     */
+
+    // 1, 匹配电话号码
+    var tel01 = '5578632';
+    var tel02 = '12399658745';
+    console.log(tel01.match(/[0-9]{11}/));
+    console.log(tel02.match(/[0-9]{11}/));
+
+    var words01 = 'hello world';
+    var words02 = 'h5  67d';
+    console.log(words01.match('he'));
+    console.log(words02.match(/^h(\w|\s)*d$/));
+
+    var mail01 = '12387965@qq.com';
+    var mail02 = '12387965@qq.co';
+    var mail03 = '-';
+
+    // []是匹配范围中的一个字符, ()子表达式
+    console.log(mail01.match(/^[1-9][0-9]{3,}@qq\.[com]{3}$/));
+    console.log(mail03.match(/[_\-.]/));
+    console.log(mail03.match(/[_\-]/));
+
+    var stu01 = 'wzd'
+    console.log(stu01.match(/^wzs*/));
+    console.log(stu01.match(/^(wzs)/));
+</script>
+</body>
+</html>

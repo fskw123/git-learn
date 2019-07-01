@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM相关操作</title>
+    <script>
+        window.onload = function (ev) {
+            window.scroll(0, 300);
+        }
+        /*
+        scroll(), scrollTo(), scrollBy() 的区别
+        scroll(),scrollTo()类似，参数是终点坐标，scrollTo() 可接收option 作为参数； scrollBy() 是移动距离
+         */
+    </script>
+</head>
+<body >
+<div class="box"></div>
+
+<input type="button" onclick="scrollWindow()" value="滚动条" />
+</body>
+<script>
+    // 谷歌浏览器支持 onbeforeunload 事件, 不支持 onunload 事件
+    /* 注意： onunload, onbeforeunload, 以及 onload
+    页面加载：onload
+    页面关闭：onbeforeunload → onunload
+    页面刷新：onbeforeunload → onunload → onload
+     */
+    window.onbeforeunload = function() {
+        window.scroll(0, 300);
+    }
+    function scrollWindow(){
+        window.scrollTo(100,500);
+    }
+    // window.scrollTo(0, 300);
+    var b = document.querySelector('body');
+    for(var i = 0; i < 20; i++) {
+        var a = document.createElement('div');
+        b.append(a);
+        a.setAttribute('class', 'box');
+    }
+    window.onscroll = function () {
+        console.log(document.documentElement.scrollTop);
+        // console.log(document.body.scrollTop);
+    }
+
+
+</script>
+<style>
+    div.box {
+        width: 200px;
+        height: 300px;
+        background-color: #8a6de9;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+</style>
+</html>

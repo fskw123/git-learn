@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    const foos = new WeakSet();
+    class Foo {
+        constructor (name, age) {
+            this.name = name;
+            this.age = age;
+            foos.add(this);
+        }
+        method () {
+            if (!foos.has(this)) {
+                throw new TypeError('Foo.prototype.method只能在Foo的实例上调用');
+            }
+        }
+    }
+
+    let a = new Foo('xiaoming', 12);
+    let b = new Foo('xiaowang', 13);
+    console.log(foos);
+    // keys, values, entries
+</script>
+</body>
+</html>

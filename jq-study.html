@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq-study</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="div1"><h2>使用 jQuery AJAX 修改文本内容</h2></div>
+<button>获取外部内容</button>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#div1").load("");
+        });
+    });
+</script>
+</body>
+</html>

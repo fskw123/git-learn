@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+<body>
+<article>
+    <h1 class="header red">Vue.js Custom Directive with Semantic-UI Dropdown</h1>
+    <div class="ui divider"></div>
+    <div id="el">
+        <select @change="selected = $event.target.value" v-select="selected">
+            <option >default</option>
+            <option v-for="option in options" v-bind:key="option.id" >
+                {{ option.text }}
+            </option>
+        </select>
+        <div class="ui divider"></div>
+        <span>Selected Key : {{ selected }}</span>
+    </div>
+
+</article>
+
+<script>
+    Vue.directive('select', {
+        // twoway: true, 这两个属性都是 vue1.0的
+        // params: ['a'],
+        inserted: function (el, binding, vnode) {
+            // 通过value 找index
+            let a = [...el.options];
+            console.log(a);
+            a.forEach((i, index) => {
+                console.log(i.value);
+                if (i.value === binding.value) {
+                    el.options.selectedIndex = index;
+                }
+            })
+
+        }
+    });
+    let vm = new Vue({
+        el: '#el',
+        data: {
+            selected: 'Hello',
+            options: [
+                { id: 1, text: 'Hello' },
+                { id: 2, text: 'Bonjour' },
+                { id: 3, text: 'Salam' }
+            ],
+            good: 'good',
+        },
+        methods: {
+            selectChange: function (t) {
+                this.selected = t;
+            }
+        },
+        watch: {
+            'selected': function (val, oldVal) {
+            }
+        }
+
+
+    });
+
+
+
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

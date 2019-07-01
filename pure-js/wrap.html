@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>encapsulate</title>
+</head>
+<body>
+
+<script>
+    // 私有变量 和 私有函数
+    // 1.构造函数
+    function Object() {
+        var privateVariable = 10;
+        function privateFunction () {
+            return false;
+        }
+        // 特权方法
+        this.publicMethod = function () {
+            privateVariable ++;
+            return privateFunction();
+        }
+    }
+    // 隐藏哪些不应该被直接修改的数据
+
+    function Person (name) {
+        this.getName = function () {
+            return name;
+        };
+        this.setName = function (value) {
+            // this.name = value;
+            name = value;
+        }
+    }
+    var p1 = new Person('Mike');
+    console.log(p1.getName());
+    p1.setName('John');
+    console.log(p1.getName());
+    // console.log(p1.name);
+
+    // 静态私有变量
+    (function () {
+        var privateVariable = 10;
+        function privateFunction () {
+            return false;
+        }
+        // 特权方法
+        Myobject = function () {
+
+        };
+        Myobject.prototype.publicMethod = function () {
+            privateVariable ++;
+            return privateFunction();
+        }
+    })();
+
+    // 模块模式
+    // 创建单例
+    var single = function () {
+        var privateVariable = 10;
+        function privateFunction() {
+            return false;
+        }
+        return {
+            publicProperty: true,
+
+            publicMethod: function () {
+                privateVariable ++;
+                return privateFunction();
+            }
+        }
+    }
+</script>
+</body>
+</html>

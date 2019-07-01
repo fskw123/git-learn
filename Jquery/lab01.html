@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery01</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            // 开始写 jQuery 代码...
+            $("p").click(function(){
+                $(this).hide();
+            });
+            $("#p1").mouseenter(function(){
+                alert('您的鼠标移到了 id="p1" 的元素上!');
+            });
+            /*$("#p1").hover(
+                function(){
+                    alert("你进入了 p1!");
+                },
+                function(){
+                    alert("拜拜! 现在你离开了 p1!");
+                }
+            );
+            */
+            $("input").focus(function(){
+                $(this).css("background-color","#cccccc");
+            });
+
+            $("#hide").click(function(){
+                $("p").hide();
+            });
+
+            $("#show").click(function(){
+                $("p").show();
+            });
+            /*
+            fadein 是整体慢慢由淡变实， 而show 是由小变大
+             */
+            $(".hidebtn").click(function(){
+                $("div.box02").hide(1000,"linear",function(){
+                    alert("Hide() 方法已完成!");
+                });
+            });
+
+        });
+
+        $(function(){
+
+            // 开始写 jQuery 代码...
+
+        });
+        // $("tr:even")	选取偶数位置的 <tr> 元素	在线实例
+        // $("tr:odd")	选取奇数位置的 <tr> 元素
+    </script>
+</head>
+<body>
+<div class="box">
+    <p id="p1">这是一段话</p>
+    <p>这也是一段话</p>
+    <input type="text">
+    <input type="text">
+</div>
+
+<div class="box02"></div>
+<button class="hidebtn">这是一个按钮</button>
+<style>
+    div.box02 {
+        width: 200px;
+        height: 200px;
+        background-color: #4cd964;
+    }
+</style>
+</body>
+
+</html>

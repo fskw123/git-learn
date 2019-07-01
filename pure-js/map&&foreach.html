@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+
+
+
+
+
+
+<script>
+    let a = [3, 4, 5, 6];
+    let cc = a.forEach((i) => {
+        return i;
+    }); // 没有返回值 undefined 数据类型没定
+    // console.log(gg); // 报错
+    console.log(cc);
+    let bb = a.map((i) => {
+        if (i > 5) {
+            return i;
+        }
+    });
+    console.log(bb);
+    /*
+    0: undefined
+    1: undefined
+    2: undefined
+    3: 6
+     */
+    let hh = a.filter((i) => {
+        if (i > 5) {
+            return i;
+        }
+    });
+    console.log(hh);
+    /*
+    0: 6
+    length: 1
+    __proto__: Array(0)
+
+     */
+    let xh = a.some((i) => {
+        if (i > 7) {
+            return i;
+        }
+    });
+    console.log(xh);
+    // false
+    // 值只有两个， true 或 false
+</script>
+</body>
+</html>

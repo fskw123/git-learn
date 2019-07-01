@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.6/vue-router.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// 导航守卫
+// 全局前置守卫
+const router = new VueRouter({ ... })
+
+router.beforeEach((to, from, next) => {
+    // ...
+})
+    // 作用总结
+    // 1, 导航守卫，当用户没有登录时，限制用户不能访问某些页面
+    // 2, 组件过渡， 当页面中切换会出现动态的切换效果
+    // 3, 组件中的参数传递， 在首页中选中某些信息，在子页能做出渲染
+    // 4, 懒加载, 体验的改进，打开首页不用加载所有组件
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!auth.loggedIn()) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next() // 确保一定要调用 next()
+    }
+})
+    // router 构建选项
+    //routes: path, name, meta, beforeEnter, alias, redirect, children, components, component,prop
+    // mode: hash, history, abstract
+    // base
+    // linkActiveClass, linkExactActiveClass
+    // scrollBehavior
+    // parseQuery, stringifyQuery
+    // fallback
+    /*
+    Router 实例属性 和 方法
+    this.$router, this.$route
+     */
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

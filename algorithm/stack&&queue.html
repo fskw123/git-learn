@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<script>
+    /*var btn = document.getElementById('my-btn');
+    btn.onclick = function () {
+        setTimeout(function () {
+            document.getElementById('message').style.visibility = 'visible';
+        }, 250)
+    };
+
+    setTimeout(function () {
+        setTimeout(arguments.callee, interval);
+    }, interval);
+
+    // 函数的防抖与节流
+        var processor = {
+            timeoutId: null,
+            performanceProcessing: function () {
+                // 实际执行的代码
+            },
+            process: function () {
+                clearTimeout(this.timeoutId);
+                var that = this;
+                this.timeoutId = setTimeout(function () {
+                    that.performanceProcessing();
+                }, 100)
+            }
+        };
+        processor.process();
+
+        function throttle(method, context) {
+            clearTimeout(method.tId);
+            method.tId = setTimeout(function () {
+                method.call(context);
+            }, 100)
+        }
+        // 防抖 规定时间内触发，只执行最后一次
+    let timer;
+    window.onscroll  = function () {
+        if(timer){
+            clearTimeout(timer)
+        }
+        timer = setTimeout(function () {
+            //滚动条位置
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log('滚动条位置：' + scrollTop);
+            timer = undefined;
+        },200)
+    }
+
+     // 节流 规定时间内触发，只执行最开始那一次
+    var canRun = true;
+    document.getElementById("throttle").onscroll = function(){
+        if(!canRun){
+            return
+        }
+        canRun = false
+        setTimeout( function () {
+            console.log("函数节流")
+            canRun = true
+        }, 500)
+    }
+    */
+    // 栈 stack
+    // push(), pop(), peek(), isEmpty(), clear(), size()
+    function Stack() {
+        let items = [];
+        this.push = function (element) {
+            items.push(element);
+        };
+        this.pop = function () {
+            return items.pop();
+        };
+        this.peek = function () {
+            return items[items.length - 1];
+        };
+        this.isEmpty = function () {
+            return items.length === 0;
+        };
+        this.size = function () {
+            return items.length;
+        };
+        this.clear = function () {
+            items = [];
+        };
+        this.print = function () {
+            console.log(items.toString());
+        }
+    }
+    let divideBy2 = (function () {
+
+        let str = '',
+            remStack = new Stack();
+        return function divideBy2(decNumber) {
+            let num;
+            num = decNumber % 2;
+            remStack.push(num);
+            decNumber =Math.floor(decNumber / 2);
+            if (decNumber === 0 ) {
+                while (!remStack.isEmpty()) {
+                    str += remStack.pop().toString();
+                }
+                console.log(str);
+                str = '';
+                return;
+            }
+            divideBy2(decNumber);
+        }
+    })();
+    // 哪些变量能放在函数体内部 声明可以放在函数体内，初始化必须放在外部
+    divideBy2(5);
+    divideBy2(4);
+    divideBy2(8);
+    divideBy2(1);
+    divideBy2(0);
+</script>
+</body>
+</html>

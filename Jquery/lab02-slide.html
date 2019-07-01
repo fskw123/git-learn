@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery01</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#flip").click(function(){
+                $("#panel").slideDown("slow");
+            });
+            $("button.animate-btn").click(function(){
+                $("div.move-box").animate({left:'250px'});
+            });
+
+            $("button").click(function(){
+                var div=$("div");
+                div.animate({left:'100px'},"slow");
+                div.animate({fontSize:'3em'},"slow");
+            });
+            $("button").click(function(){
+                $("#p1").css("color","red").slideUp(2000).slideDown(2000);
+            });
+        })
+    </script>
+</head>
+<body>
+<style type="text/css">
+    #panel,#flip
+    {
+        padding:5px;
+        text-align:center;
+        background-color:#e5eecc;
+        border:solid 1px #c3c3c3;
+    }
+    #panel
+    {
+        padding:50px;
+        display:none;
+    }
+</style>
+
+<div id="flip">点我滑下面板</div>
+<div id="panel">Hello world!</div>
+
+<button class="animate-btn">开始动画</button>
+<p>默认情况下，所有的 HTML 元素有一个静态的位置，且是不可移动的。
+    如果需要改变为，我们需要将元素的 position 属性设置为 relative, fixed, 或 absolute!</p>
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;" class="move-box">
+</div>
+
+
+
+</body>
+
+</html>

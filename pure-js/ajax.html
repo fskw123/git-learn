@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asynchronous javascript + xml</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'example.text', true); // 初始化
+    xhr.send(null);
+    // 等待响应阶段,监听与回调
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status >=200 && xhr.status < 300 || xhr.status === 304) {
+                alert(xhr.responseText);
+            } else {
+                alert('Request was unsuccessful:' + xhr.status);
+            }
+        }
+    };
+    xhr.abort();
+
+    function fr (x, y, callback) {
+        return callback(x, y);
+    }
+
+    function fc (x, y) {
+        function increment() {
+            return (x + y);
+        }
+        return increment;
+    }
+    var site = fc(1, 2);
+    console.log(site());
+    var scene = fc(3, 2);
+    console.log(scene());
+    console.log(site());
+
+    var getJson = function (url) {
+        var promise = new Promise(function(resolve,reject) {
+            var client = new XMLHttpRequest();
+            client.open('get', url);
+            client.onreadystatechange = handler;
+            client.responseType = 'json';
+            client.setRequestHeader('accept', 'application/json');
+            client.send();
+
+            function handle() {
+                if (this.readyState !== 4) {
+                    return;
+                }
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    reject(new Error(this.statusText))
+                }
+            }
+        });
+        return promise;
+    }
+</script>
+</body>
+</html>

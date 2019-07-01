@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="imgbox"></div>
+<script>
+    var a = document.getElementById('imgbox')
+    var b = document.createElement("img")
+    var c = document.createElement("span")
+    var d = document.createElement("span")
+    a.appendChild(c)
+    a.appendChild(b)
+    a.appendChild(d)
+    c.innerHTML = '<'
+    d.innerHTML = '>'
+    a.style.display = 'flex'
+    a.style.justifyContent = 'space-between'
+    a.style.width = '500px'
+    a.style.height = '400px'
+    // a.style = {
+    //     display: 'flex',
+    //     justifyContent: 'space-between'
+    // }
+    b.style.width = '300px'
+    b.style.height = '200px'
+    c.style.zIndex = '2'
+
+    var img = [
+        './img/img01.jpg',
+        './img/img02.jpg',
+        './img/img03.jpg',
+        './img/img04.jpg',
+    ]
+    var i = 0
+    b.src = img[i]
+    b.class = 'img-move'
+    var moveRight = function () {
+        if (i <= 2) {
+            i ++
+        }else {
+            i = 0
+        }
+
+    }
+    var moveLeft = function () {
+        if (i >= 1) {
+            i --
+        }else {
+            i = 3
+        }
+
+    }
+
+
+    c.onclick = function () {
+        moveLeft()
+
+        setTimeout('b.style.transform = \'translateX(-300px)\'', 200)
+        setTimeout('b.src = img[i]', 400)
+        setTimeout('b.style.transform = \'translateX(0px)\'', 600)
+    }
+    d.onclick = function () {
+        moveRight()
+        // location.reload()
+        b.src = img[i]
+    }
+
+
+
+</script>
+<style>
+    div#imgbox {
+
+    }
+    div#imgbox > span {
+    font-size: 50px;
+}
+
+</style>
+</body>
+
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    const LittleBox = {
+        template: '<div>hello, man <p>{{this.$data}}</p></div>',
+        data: function () {
+            return {name: 'Jerry'};
+        },
+        created: function() {
+            // console.log(this.$data);
+        },
+        methods: {}
+    };
+   const vm = new Vue({
+       el: '#app',
+       data: {
+           title: 'nameBox',
+           name: 'John'
+       },
+       methods: {},
+       components: {
+            LittleBox,
+       },
+       template: '<div><h3>{{title}}</h3><LittleBox></LittleBox></div>'
+   });
+
+    vm.$data = {title: 'funnyBox', name: 'Tom'};
+
+    console.log(vm.$data);
+    console.log(LittleBox.$data);
+    console.log(vm.$children);
+    console.log(LittleBox);
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    button {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+<div class="comment-box">
+    <button>一星</button>
+    <button>二星</button>
+    <button>三星</button>
+    <button>四星</button>
+    <button>五星</button>
+</div>
+<script>
+    let bt = document.getElementsByTagName('button');
+    console.log(bt);
+
+    // for (let i = 0; bt.length; i++) {
+    //     bt[i].onclick = () => {
+    //         bt[i].style.backgroundColor = 'yellow';
+    //     }
+    // }
+    let arr = [...bt];
+    // 版本一
+    /*
+    arr.forEach((i,index) => {
+        let flag = true;
+        i.onclick = () => {
+                if (flag) {
+                    for (let j = 0; j -1 < index; j++) {
+                        arr[j].style.backgroundColor = 'yellow';
+                    }
+                } else {
+                    for (let j = 0; j -1 < index; j++) {
+                        arr[j].style.backgroundColor = '';
+                    }
+                }
+
+                return flag = !flag;
+        }
+    });
+     */
+    // 版本二
+    arr.forEach((i,index) => {
+        i.onclick = () => {
+            arr.forEach( (m) => {
+                m.style.backgroundColor = '';
+            });
+            for (let j = 0; j -1 < index; j++) {
+                arr[j].style.backgroundColor = 'yellow';
+            }
+        }
+    });
+
+    // 再点取消
+
+    // 取消之前 取消其它位置点击事件
+    a = [1, 5, 6, 8];
+    console.log(a);
+
+    // 日历
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    // 若根实例没有挂载目标，则需要显示调用vm.$mount
+    // 三种方式为挂载元素添加模板
+    // 1, template
+    // 2, render
+    // 如果template 和 render 都不存在，则挂载元素的html 提取出来作为template
+
+let vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        template: '<h3>this is a template</h3>',
+    });
+
+// 挂载后不会被覆盖
+
+// Vue.extend(), Vue.component(),
+    var MyComponent = Vue.extend({
+        template: '<div>Hello!</div>'
+    })
+
+    // 创建并挂载到 #app (会替换 #app)
+    new MyComponent().$mount('#app')
+
+    // 同上
+    new MyComponent({ el: '#app' })
+
+    // 或者，在文档之外渲染并且随后挂载
+    var component = new MyComponent().$mount()
+    document.getElementById('app').appendChild(component.$el)
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

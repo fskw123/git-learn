@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // __proto__
+    // console.log(document);
+    console.dir(document);
+    console.dir(document.__proto__); //  document.__proto__ === HTMLDocument
+    // console.dir(document.__proto__.__proto__);
+    console.dir(HTMLDocument.prototype.__proto__); // HTMLDocument.__proto__ ===
+    // console.dir(HTMLDocument.__proto__.__proto__);
+    console.dir(Document.__proto__);
+    console.dir(Node.__proto__);
+
+    // prototype
+    console.dir(document);
+    console.dir(document.prototype);
+
+    /*
+    constructor 是由对象指向函数 
+    __proto__ 是由对象指向对象
+    prototype 是由函数指向对象
+     */
+    function Foo() {
+        this.a = function () {
+
+        }
+    }
+    Foo.prototype.b = function () {
+
+    }
+    var f = new Foo();
+    console.log(f.__proto__); // {constructor: ƒ Foo(), __proto__: Object}
+
+    console.log(f.constructor);
+    console.log(Foo.prototype);
+    console.log(f.__proto__ === Foo.prototype);
+    console.log(Foo.prototype.__proto__);
+    console.log(Foo.prototype.__proto__ === Object.prototype);
+    console.log(Object.prototype.__proto__);
+
+    console.log(f.a.prototype);
+    console.log(f.b.prototype);
+    console.log(f.b.prototype === f.b.prototype);
+    console.log(f);
+    console.log(Foo.prototype);
+
+
+</script>
+</body>
+</html>

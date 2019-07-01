@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test07</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+</head>
+<body>
+<script>
+    var a = [1, 9, 35, 10, 100];
+    // 将数组展开的方法
+    console.log(Math.max(...a));
+    console.log(Math.max.apply(null, a));
+    console.log(Math.max.apply(Math, a));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>send-request</title>
+</head>
+<body>
+<script>
+    // img 浏览器与服务器单向通信
+    var img = new Image();
+    img.onload = img.onerror = function () {
+        alert('done!');
+    };
+    img.src = 'http://www.example.com/test?name=Nicolas';
+
+    // Jsonp：'json with padding'
+    function handleResponse(response) {
+        alert('you are at IP address' + response.ip + ', which is in' +
+        response.city + ',' + response.region_name);
+    }
+    var script = document.createElement('script');
+    script.src = 'http://freegeoi.net/json/?callback=handleResponse';
+    document.insertBefore(script, document.body.firstChild);
+
+    // comet
+    /*
+    1,长轮询, 浏览器发送请求，服务器保持连接直到有数据可发送。发送数据完成后，浏览器关闭连接。
+    1.1 短轮询，浏览器隔一段时间发送一次请求
+    */
+
+    // 2,HTTP流, 建立一次http 连接，然后服务器周期性向浏览器传输数据
+    function createStreamingClient(url, progress, finished) {
+
+        var xhr = new XMLHttpRequest();
+        var received = 0;
+
+        xhr.open('get', url, true);
+        xhr.onreadystatechange = function () {
+            var result;
+
+            if (xhr.readyState === 3) {
+                result = xhr.responseText.substring(received);
+                received += result.length;
+                progress(result);
+
+            } else if (xhr.readyState ===4 ) {
+                finished(xhr.responseText);
+            }
+        };
+        xhr.send (null);
+        return xhr;
+    }
+    var client = createStreamingClient('streaming.php', function (data) {
+        alert('Received:' + data);
+    }, function (data) {
+        alert('Done!');
+    })
+</script>
+</body>
+</html>

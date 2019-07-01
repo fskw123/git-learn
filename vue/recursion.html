@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+</head>
+<body>
+<style>
+
+
+</style>
+<div id="app">
+    <stack-overflow></stack-overflow>
+</div>
+
+<script>
+// 组件递归
+Vue.component('stack-overflow', {
+    data: function(){
+        return {
+            max: 10
+        }
+    },
+    methods: {
+        func: function () {
+            this.max -= 1;
+            return this.max > 5;
+        }
+    },
+    template: '<div>123<stack-overflow v-if="func()"></stack-overflow></div>'
+})
+    let vm = new Vue({
+        el: '#app',
+    })
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

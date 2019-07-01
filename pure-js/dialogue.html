@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    div.dialogue-box {
+        width: 300px;
+        height: 500px;
+        border: 1px solid black;
+    }
+    ul {
+        list-style-type: none;
+    }
+    li {
+        display: inline-block;
+    }
+    li.self {
+        float: right;
+        background-color: #ffe152;
+    }
+    li.talker {
+        float: left;
+        background-color: #77d380;
+    }
+</style>
+<!--聊天记录显示区-->
+<div class="dialogue-box">
+<ul>
+    <li class="self">最近忙吗？</li>
+    <li class="talker">还好，你看了《破冰行动》吗？</li>
+    <li class="self">看了啊，这部剧这段时间很火呢。</li>
+</ul>
+</div>
+ <!--打字框-->
+<form action="">
+    <input type="text">
+    <input type="submit">
+</form>
+
+<script>
+    // get请求2kB, post:2MB(服务器处理限制)
+    // 短轮询, 每100ms发一次请求
+    let xhr = new XMLHttpRequest();
+    // setInterval(function () {
+    //         xhr.open('get', '/user');
+    //         xhr.onreadystatechange = (data) => {
+    //
+    //         };
+    //         xhr.send();
+    //     }, 100);
+
+    // 长轮询
+    function ajax(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','/user');
+        xhr.onreadystatechange = function(){
+            ajax();
+        };
+        xhr.send();
+    }
+    // XMLHttpRequest.setRequestHeader()
+    /*
+    以下这些由浏览器控制，开发者不得设置
+    Accept-Charset
+    Accept-Encoding
+    Access-Control-Request-Headers
+    Access-Control-Request-Method
+    Connection
+    Content-Length
+    Cookie
+    Cookie2
+    Date
+    DNT
+    Expect
+    Host
+    Keep-Alive
+    Origin
+    Referer
+    TE
+    Trailer
+    Transfer-Encoding
+    Upgrade
+    User-Agent
+    Via
+     */
+
+</script>
+</body>
+</html>

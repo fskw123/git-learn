@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+</head>
+<body>
+<style>
+    button.bt {
+        width: 50px;
+        height: 50px;
+        background-color: #fff25c;
+    }
+    div.bigbt {
+        width: 100px;
+        height: 80px;
+        background-color: #83dfff;
+    }
+
+</style>
+<div id="app">
+   <div  class="bigbt">
+        <mybt @myevent="function(e) { console.log(e)}"></mybt>
+   </div>
+</div>
+
+
+<script>
+   Vue.component('mybt', {
+       template: '<button class="bt" @click="func"></button>',
+       methods: {
+           func: function () {
+               this.$emit('myevent', 123)   // this.onclick 无效
+           }
+       }
+   });
+    let vm = new Vue({
+        el: '#app',
+
+    })
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

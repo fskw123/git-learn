@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>snake-game</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800px" height="600px" style="border: 1px solid #000"></canvas>
+    <script>
+        var c=document.getElementById("myCanvas");
+        // ctx.fillStyle="#FF0000";
+        // ctx.fillRect(0,0,150,75);
+        // 1,绘制蛇身体，分为蛇头和 蛇身
+        // 1.1, 蛇直行：一次前进一格，蛇转弯： 蛇头先转
+        // 2,绘制随机出现的小砖块
+        // 3,蛇头碰到砖块， 砖块消失，蛇身变长一段。蛇头碰到边界则 蛇完蛋
+        var head = c.getContext("2d");
+        var i = 300
+        var m = 100
+        head.fillStyle = "red"
+        head.fillRect(i,m,32,32)
+        head.strokeRect(i,m,32,32)
+        console.log(head)
+        var body = []
+        for (var j = 0; j <5; j++) {
+            body[j] = c.getContext("2d")
+            var x = i - 32*(j + 1)
+            var y = m
+            body[j].fillStyle = "#6aabde"
+            body[j].fillRect(x,y,32,32)
+            body[j].strokeRect(x,y,32,32)
+        }
+
+        /*
+
+        function move() {
+            if (i === 0) {
+                head.clearRect(i-1,m-1,34,34)
+                body.clearRect(i-33,m-33,34,34)
+                body.clearRect(i-0,m-33,34,34)
+                body.fillRect(i,m,32,32)
+                body.strokeRect(i,m,32,32)
+                m += 32
+                head.fillRect(i,m,32,32)
+                head.strokeRect(i,m,32,32)
+
+            } else {
+                head.clearRect(i-1,m-1,34,34)
+                body.clearRect(i-33,m-33,34,34)
+                body.clearRect(i-0,m-33,34,34)
+                body.fillRect(i,m,32,32)
+                body.strokeRect(i,m,32,32)
+                m += 32
+                head.fillRect(i,m,32,32)
+                head.strokeRect(i,m,32,32)
+            }
+        }
+        */
+        var a
+        function moveRight () {
+            a = i
+            i += 32;
+        }
+        // body[1] 如何追踪 body[0]
+
+        function follow (a, b,) {
+            moveRight()
+
+        }
+        // setInterval('move(head, body)', 2000)
+
+
+
+
+    </script>
+</body>
+</html>

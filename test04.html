@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <img src="">
+    <input type="text">
+    <div class="hnblock"></div>
+    <span></span>
+</div>
+<style>
+    /*
+    vertical ,对于行内元素  和 行内块元素 影响不同 。行内元素会影响行内块元素。
+    行内块元素 不会相互影响。
+     */
+    div {
+        width: 500px;
+        height: 200px;
+        border: 1px solid black;
+    }
+    img {
+        width: 80px;
+        height: 100px;
+        background-color: #8a6de9;
+
+    }
+    input {
+        width: 100px;
+        height: 30px;
+        vertical-align: middle;
+    }
+    div.hnblock {
+        display: inline-block;
+        width: 50px;
+        height: 60px;
+        background-color: #4cd964;
+        vertical-align: middle;
+
+    }
+</style>
+</body>
+</html>

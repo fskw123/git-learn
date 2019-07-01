@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.6/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/foo3">go to foo</router-link>
+    <router-link to="/bar">go to bar</router-link>
+    <router-view></router-view>
+    <button @click="router.go(-1)"></button>
+<script>
+    const foo = {
+        template: '<div>Hello, Tom, nice to meet you<p>{{id}}</p></div>',
+        created() { console.log(this.$route); },
+        props: ['id'], // props 中参数要打引号
+
+    };
+    const bar = {
+        template: '<div>Hello, Anna, nice to meet you too</div>'
+    };
+
+    const routes = [
+        {path: '/foo:id', component: foo, props: true},
+        {path: '/bar', component: bar},
+    ];
+    const router = new VueRouter({
+        routes
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        },
+        router,
+    });
+    console.log(router);
+    // router.app 是根实例vm
+    console.log(router.options);
+    let {routes: arr} = router.options;
+    console.log(arr);   // routes
+    router.beforeEach((to, from, next) => {
+        window.confirm('yes?');
+        next();
+    })
+    // 强制刷新无效
+    // 路由传参
+    // 两种方式， this.$route.params 和 子组件的prop
+    // 全局守卫， 路由独享守卫 beforeEnter,
+    // 组件内部守卫: beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave
+    // name
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

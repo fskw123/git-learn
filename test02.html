@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h id="title">不夜城是部好电影</h>
+    <p id="msg01">
+        种田阳平很牛逼
+    </p>
+    <p id="msg02">
+       原田生也很厉害
+    </p>
+    <div id="div1">
+        <p id="p1">这是一个段落。</p>
+        <p id="p2">这是另一个段落。</p>
+    </div>
+</div>
+<script>
+    var a = document.getElementById(msg01)
+    var obj = {'0':'a','1':'b','2':'c'};
+
+    Object.keys(obj).forEach(function(key){
+
+        console.log(key,obj[key]);
+
+    });
+
+    for(var i in obj) {
+
+        console.log(i,":",obj[i]);
+
+    }
+
+    var para=document.createElement("p");
+    var node=document.createTextNode("这是新段落。");
+    para.appendChild(node);
+
+    var element=document.getElementById("div1");
+    element.appendChild(para);
+
+    var parent=document.getElementById("div1");
+    var child=document.getElementById("p1");
+    parent.removeChild(child);
+</script>
+</body>
+</html>

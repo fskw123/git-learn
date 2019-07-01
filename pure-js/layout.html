@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>layout</title>
+</head>
+<style>
+    div.box {
+        background-color: blue;
+        width: 200px;
+        height: 300px;
+        position: relative;
+    }
+    /*
+    div.box {
+        background-color: blue;
+        width: 200px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+    }
+    */
+    /*margin 只能水平居中*/
+    div.con {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        background-color: red;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /*水平对齐和竖向对齐分开看*/
+/*居中和对齐分开看*/
+</style>
+<body>
+<!--1,margin-->
+<!--2,position-->
+<!--3,flex(justify-content)-->
+<!--4,float-->
+<!--行内元素-->
+<!--text-align-->
+<!--vertical-align-->
+<div class="box">
+    <div class="con"></div>
+</div>
+</body>
+</html>

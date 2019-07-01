@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+<script>
+    var sayhello = function(name, callback){
+        setTimeout(function(){
+            // 将hello变为单例
+            console.log("hello");
+            console.log(name);
+            return callback(null);
+        },1000);
+        // 让某个函数只运行一次
+
+        // 回调与闭包
+    }
+    sayhello("xiaomi", function(err){
+        sayhello("apple", function(err){
+            sayhello("huawei", function(err){
+                console.log("end");
+            });
+        });
+    });
+    console.log("mobile phone");
+
+</script>
+</body>
+
+</html>

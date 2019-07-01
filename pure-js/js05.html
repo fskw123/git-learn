@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css change</title>
+</head>
+<body>
+<div class="box">
+    <h3>这是一个标题</h3>
+    <p>这是一些文字</p>
+    <input type="text">
+    <br>
+    <input type="submit">
+    <br>
+    <button onclick = 'changeCss()' style="margin-top: 10px;">切换</button>
+</div>
+<script>
+    let arr = [
+        './css01.css',
+        './css02.css',
+    ];
+    var i = 0;
+    var a = document.createElement('link');
+    var c = document.querySelector('.box');
+    console.log(a);
+    a.href = arr[i];
+    a.rel = 'stylesheet';
+    var head = document.querySelector('head');
+    // console.log(head) head不是数组
+    head.appendChild(a);
+    function changeCss() {
+       i++;
+       if (i > arr.length-1) {
+           i = 0;
+       }
+       a.setAttribute('href', arr[i]);
+    }
+</script>
+
+
+</body>
+</html>

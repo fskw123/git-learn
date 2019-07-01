@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    /*
+   继承
+    */
+    function Person(name, sex, age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.eat = function () {
+            console.log('吃白米饭！')
+        }
+    }
+    Person.prototype.walk = function () {
+        console.log('走路!');
+    }
+    var p1 = new Person('小明', '男', '16');
+    console.log(p1.name, p1.sex,);
+    p1.eat();
+    p1.walk();
+
+
+    /*原型链继承*/
+    function test() {
+        function Student () {
+
+        }
+        Student.prototype = new Person('小强', '男', '15')
+        var stu1 = new Student('小江', '男', '12');
+        console.log(stu1.name);
+        stu1.eat();
+    }
+
+    /*
+    apply(), call() 改变 函数 的 this 指向, 是直接调用
+    bind() 是返回一个函数, 可以先传参， 也可以调用的时候再传参
+     */
+    /*构造继承*/
+    function test() {
+        function Student () {
+            Person.call(this)
+        }
+        var stu02 = new Student();
+        stu02.eat();
+    }
+
+    /*实例继承*/
+    function test() {
+        function Student() {
+            var instance = new Person();
+            instance.name = name || 'Tom';
+            return instance
+        }
+    }
+
+    /*拷贝继承
+    1, 效率低
+    2, 不可获得父类的不可枚举的方法
+    */
+    function test() {
+        function Student() {
+            var p1 = new Person();
+            for (var key in p1) {
+                Student.prototype[key] = p1[key]
+            }
+        }
+    }
+
+    /*组合继承
+        1, 调用了两次父类构造函数
+     */
+    function test() {
+        function Student() {
+            Person.call(this)
+        }
+        Student.prototype = new Person();
+        Student.prototype.constructor = Student;
+    }
+
+    /*
+    寄生组合继承
+     */
+    function Student(name, sex, age) {
+        Person.call(this, name, sex, age)
+    }
+    // Student.prototype = Person.prototype;  // 这样把两个constructor 给绑定了，不好
+    (function(){
+        // 创建一个没有实例方法的类
+        var Super = function(){};
+        Super.prototype = Person.prototype;
+        //将实例作为子类的原型
+        Student.prototype = new Super();
+    })();
+
+    Student.prototype.constructor = Student;
+
+    var stu02 = new Student('小强', '男', 12);
+    stu02.eat()
+    stu02.walk()
+    console.log(stu02.name);
+    console.log(stu02.sex);
+    console.log(stu02 instanceof Student);
+    console.log(stu02 instanceof Person);
+    console.log(Student.prototype);
+    console.log(Person.prototype);
+
+    function test () {
+        function Student(name, sex, age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
+            /*this.eat = function () {
+                console.log('eat!');
+            };
+            */
+            this.study = function () {
+                console.log('学习！');
+            }
+        }
+        Student.prototype.sports = function() {
+            console.log('跑步！');
+        }
+        /*Student.prototype = {
+            eat: function () {
+                console.log('吃热干面！');
+            }
+        }*/
+
+        // stu1.sports();
+    }
+
+
+
+
+    /*
+    闭包，函数闭包 和 对象闭包
+     */
+
+    /*
+    浅复制 和 深复制
+     */
+</script>
+</body>
+</html>

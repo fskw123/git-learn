@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // 解构赋值
+    // 1,变换变量的值
+    let x = 2, y = 3;
+    [x, y] = [y, x];
+
+    // 2，从函数返回多个值
+    function example() {
+        return [2, 3, 4];
+    }
+    let [a, b, c] = example();
+
+    // 3, 深复制
+    let arr = [2, 5, 6];
+    let arr01 = [...arr];
+
+    // 4，函数参数的定义（方便将一组参数和变量名对应起来）
+    // 有序
+    function f([x, y, z]) {}
+    f([1, 5, 7]);
+
+    // 无序
+    function f1({x, y, z}) {}
+    f1({z:4, x:6, y:7});
+
+    // 5, 提取Json数据
+    let jsonData = {id: 42, status: 'ok', data: [867, 4233]};
+    let {id, status, data: number} = jsonData; // 属性同名赋值
+
+    // 6, 函数参数的默认赋值
+    jQuery.ajax = function (url, {
+        async = true,
+        beforeSend = function () {},
+        cache = true,
+        complete = function () {},
+        crossDomain = false,
+        global = true,
+        // ...more config
+    }) {
+        // ... do stuff
+    }
+
+    // 7, 遍历Map结构
+    var map = new Map();
+    map.set('first', 'hello');
+    map.set('second', 'world');
+     for (let [key, value] of map) {
+         console.log(key + 'is' + value);
+     }
+     // 获取键名 [key], 获取键值 [,value]
+
+    // 8, 输入模块的指定方法
+    const {SourceMapConsumer, SourceNode} = require ('source-map');
+</script>
+</body>
+</html>

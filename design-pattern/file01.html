@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duck</title>
+</head>
+<body>
+<script>
+    var duck = {
+        duckSinging: function () {
+            console.log('嘎嘎嘎！');
+        }
+    };
+    var chicken = {
+        duckSinging: function () {
+            console.log('嘎嘎嘎！');
+        }
+    };
+    var choir = [];
+
+    var joinChoir = function (animal) {
+        if (animal && typeof animal.duckSinging === "function") {
+            choir.push(animal);
+            console.log('恭喜加入合唱团！');
+            console.log('合唱团现在人数：' + choir.length);
+        }
+    };
+
+    joinChoir(duck);
+    joinChoir(chicken);
+
+    var makeSound = function (animal) {
+        if (animal instanceof Duck) {
+            console.log('嘎嘎嘎！');
+        }
+        if (animal instanceof Chicken) {
+            console.log('咯咯咯！');
+        }
+    };
+    function Duck() {
+
+    }
+    function Chicken() {
+
+    }
+    var duck = new Duck();
+    var chicken = new Chicken();
+
+    makeSound(duck);
+    makeSound(chicken);
+    // 多态就是把做什么 和 谁去做和怎么做 分离开
+    // 多态最根本的作用就是将过程化的条件分支语句，转化为对象的多态性
+    var makeSound = function (animal) {
+        animal.sound();
+    }
+
+    function Duck() {
+
+    }
+    Duck.prototype.sound = function () {
+        console.log('嘎嘎嘎！');
+    };
+    function Chicken() {
+
+    }
+    Chicken.prototype.sound = function () {
+        console.log('咯咯咯！');
+    };
+    // 单例模式
+    // 有些对象往往只需要一个，例如线程池、全局缓存、浏览器中的Windows对象等
+    var Singleton = function (name) {
+        this.name = name;
+        this.instance = null;
+    };
+    Singleton.prototype.getName = function () {
+        alert(this.name);
+    };
+    Singleton.getInstance = function (name) {
+        if (!this.instance) {
+            this.instance = new Singleton(name);
+        }
+        return this.instance;
+    };
+    var a = Singleton.getInstance('sven1');
+    var b = Singleton.getInstance('sven2');
+    console.log(a, b);
+    console.log(a === b);
+
+    // 透明的单例模式
+
+    var CreateDiv = (function () {
+        var instance;
+        var CreateDiv = function (html) {
+            if (instance) {
+                return instance;
+            }
+            this.html = html;
+            this.init();
+            return instance = this;
+        };
+        CreateDiv.prototype.init = function () {
+            var div = document.createElement('div');
+            div.innerHTML = this.html;
+            document.body.appendChild(div);
+        };
+        return CreateDiv;
+    })();
+
+    var a = new CreateDiv('sven1');
+    var b = new CreateDiv('sven2');
+    console.log(a, b);
+    // 策略模式
+    // 1, 模仿面向传统面向对象的方式
+    var Bonus = function () {
+        this.salary = null;
+        this.strategy = null;
+    }
+    Bonus.prototype.setSalary = function (salary) {
+        this.salary = salary;
+    };
+    Bonus.prototype.setStrategy = function (strategy) {
+        this.strategy = strategy;
+    };
+    Bonsus.getBonus = function () {
+        return this.strategy.calculate(this.salary);
+    };
+    // 2， js版本策略模式
+    // 发布-订阅模式
+    var Event = (function(){
+        var clientList = {},
+            listen,
+            trigger,
+            remove;
+        listen = function( key, fn ){
+            if ( !clientList[ key ] ){
+                clientList[ key ] = [];
+            }
+            clientList[ key ].push( fn );
+        };
+        trigger = function(){
+            var key = Array.prototype.shift.call( arguments ),
+                fns = clientList[ key ];
+            if ( !fns || fns.length === 0 ){
+                return false;
+            }
+            for( var i = 0, fn; fn = fns[ i++ ]; ){
+                fn.apply( this, arguments );
+            }
+        };
+        remove = function( key, fn ){
+            var fns = clientList[ key ];
+            if ( !fns ){
+                return false;
+            }
+            if ( !fn ){
+                fns && ( fns.length = 0 );
+            }else{
+                for ( var l = fns.length - 1; l >=0; l-- ){
+                    var _fn = fns[ l ];
+                    if ( _fn === fn ){
+                        fns.splice( l, 1 );
+                    }
+                }
+            }
+        };
+        return {
+            listen: listen,
+            trigger: trigger,
+            remove: remove
+        }
+    })();
+    Event.listen( 'squareMeter88', function( price ){ // 小红订阅消息
+        console.log( '价格= ' + price ); // 输出：'价格=2000000'
+    });
+    Event.trigger( 'squareMeter88', 2000000 ); // 售楼处发布消息
+    // new 创建实例的原理
+    function New(F){
+        var obj = {'__proto__': F.prototype};  /*第一步*/
+        return function() {
+            F.apply(obj, arguments);           /*第二步*/
+            return obj;                        /*第三步*/
+        }
+    }
+</script>
+</body>
+</html>

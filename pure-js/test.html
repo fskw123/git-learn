@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body id="body">
+<div id="box">
+    <h3 id="title">你好吗</h3>
+    <p>我很好啊</p>
+
+</div>
+<script>
+    var reg=/boy(s)?\s+and\s+girl(s)?/gi;
+    console.log(reg.test('boy    and   girl'));
+    let mail = /^\d+@+\w+\.+\w/i;
+    console.log(mail.test('133@qq.com'));
+    // 生日 邮箱 信用卡号 用户名
+
+
+    // array 原生方法
+
+    // 增删查改
+    // 增：push,unshift
+    // 删：pop, shift, splice
+    // 查; indexOf, lastIndexOf, find, findIndex，includes
+    // 改：copyWithin, 手动改
+    // 提取： slice, filter
+    // 审查： some, every
+    // 批量处理：forEach,map
+    // 排序： sort, reverse
+
+    // 字符串原生方法
+
+    // 增删查改
+    // 增
+    // 删
+    // 查： indexOf, lastIndexOf, charAt
+    // 改： replace
+    // 提取: subStr, substring, slice
+    // 与数组的转化： split
+
+    let obj = {
+        name: 1,
+        age: 2,
+        printAge: () => {
+            console.log(this.age);
+            },
+    };
+    obj.printAge();// undefined 箭头函数this指向问题
+
+    // es5, es6 写法
+
+    let time = new Date(); // Mon Jun 24 2019 22:19:44 GMT+0800 (中国标准时间)
+    let timeb = Date.now(); // 毫秒数
+    console.log(time);
+    console.log(timeb);
+    console.log(time.getTime()); // 毫秒数与timeb相等
+    // getTime, getSeconds, getHours, getMonth,getminutes, getDate,getDay(星期几）
+</script>
+</body>
+</html>

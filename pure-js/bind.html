@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bind</title>
+</head>
+<body>
+<script>
+    var handler = {
+        message: 'Event handled',
+
+        handleClick: function (event) {
+            alert(this.message);
+        }
+    }
+    console.log(handler.handleClick());
+</script>
+</body>
+</html>

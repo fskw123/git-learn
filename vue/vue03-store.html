@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.1.1/vuex.esm.browser.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// 分析需求
+    // 创建一个数组专门储存商品数据，包括商品名称，数量，id等
+    // 访问storage，并储存里面的数据
+    // 添加商品，添加商品到数组，如果用相同商品，则修改数量，如果没有，则新建商品
+    // 选择商品，
+    // 删除商品
+    // 提交，提交给服务器
+    let car= window.localStorage.getItem('car') || [];
+    const store = new Vuex.store({
+        state: {
+            shopCar: car
+        },
+        getters: {
+            // 总金额
+
+        },
+        mutations: {
+            // 添加商品
+            // product = { id, num, cost, name}
+            addGoods: function (product) {
+                if (!this.shopCar.some((item, product)=> {
+                    if (item.id === product.id) {
+                        item.num += 1;
+                        return true;
+                    } else return false;
+                })) {
+                 this.shopCar.push({id: product.id, name: product.name, num: 1, cost: product.cost})
+                }
+                window.localStorage.setItem('car', this.shopCar);
+            },
+            // 减少商品
+            reduceGoods: function(product) {
+                if (product.num >1) {
+                    product.num -= 1;
+                } else this.delGoods(product)
+                window.localStorage.setItem('car', this.shopCar);
+            },
+            // 删除商品
+            delGoods: function (index) {
+                this.shopCar.splice(index, 1);
+                window.localStorage.setItem('car', this.shopCar);
+            }
+            // 提交商品
+        },
+        actions: {
+
+        }
+    })
+</script>
+<style>
+
+</style>
+</body>
+</html>
+

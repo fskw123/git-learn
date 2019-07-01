@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+<script>
+    // 1，position 来定位
+    // 2,text-align, line-height， vertical-align 特殊之处
+    // 3,table 定位
+    // 4,float元素定位 特殊之处
+    // 5,高度自适应， 宽度自适应， 多列更高
+    // 6,style 属性的继承
+</script>
+
+    <!--<div class="container">-->
+        <!--<div class="item">123</div>-->
+        <!--<h3>今天天气好</h3>-->
+        <!--<p>又装了电视机</p>-->
+        <!--<p>可惜没网了</p>-->
+
+    <!--</div>-->
+    <!--<style>-->
+        <!--div.container {-->
+            <!--width: 800px;-->
+            <!--height: 800px;-->
+            <!--border: 6px solid black;-->
+            <!--margin-left: 300px;-->
+            <!--padding: 10px;-->
+
+
+        <!--}-->
+        <!--div.item {-->
+            <!--float: left;-->
+            <!--width: 200px;-->
+            <!--height: 100%;-->
+            <!--background-color: red;-->
+        <!--}-->
+
+        <!--div.item:after {-->
+            <!--content: '';-->
+            <!--clear: both;-->
+        <!--}-->
+
+
+    <!--</style>-->
+    <div class="waterfall">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+        <img src="./img/img01.jpg" class="img-card01">
+        <img src="./img/img02.jpg" class="img-card02">
+        <img src="./img/img03.jpg" class="img-card03">
+        <img src="./img/img04.jpg" class="img-card04">
+
+
+    </div>
+<style>
+    div.waterfall {
+        position: relative;
+
+    }
+    img {
+        margin: 10px;
+        position: absolute;
+    }
+    /*div.waterfall {*/
+        /*display: flex;*/
+        /*flex-direction: row;*/
+        /*flex-wrap: wrap;*/
+
+    /*}*/
+    /*img{*/
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*width: calc(100%/3);*/
+
+    /*}*/
+    img.img-card01{
+        width: 100px;
+        height: 60px;
+
+    }
+    img.img-card02{
+        width: 100px;
+        height: 220px;
+
+    }
+    img.img-card03{
+        width: 100px;
+        height: 130px;
+
+    }
+    img.img-card04{
+        width: 100px;
+        height: 80px;
+
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var student01 = {
+        name: 'xiaoming',
+        gender: 'male',
+        height: '170',
+
+    }
+    //  Object自身方法 Object.keys(), Object.getOwnPropertyNames(),
+    // 1, 对象的属性模型的相关方法
+    // 1.1, Object.getOwnPropertyDescriptor(), Object.defineProperty(), Object.defineProperties()
+    // 2, 控制对象状态的方法
+    // 2.1, Object.preventExtensions(), Object.isExtensible(), Object.seal(), Object.isSealed(),
+    // Object.freeze(), Object.isFrozen()
+    // 3, 原型链相关方法
+    // 3.1, Object.create(), Object.getPrototypeOf()
+
+    // Object 的实例方法
+    // 1,Object.prototype.valueOf(), Object.prototype.toString(), Object.prototype.toLocaleString(),
+    // Object.prototype.hasOwnProperty(), Object.prototype.isPrototypeOf(), Object.prototype.propertyIsEnumerable()
+
+    // 函数的 this 指向 调用它的对象
+    function hello(name) {
+        console.log(123);
+        var a = name;
+    }
+    hello.bb = '小明';
+    console.log(hello.bb);
+    console.log(hello.arguments);
+    console.log(hello);
+    // arguments 是局部变量， 是个对象不是数组， 但使用方式和数组相似
+    function f() {
+        return arguments
+    }
+    function ff() {
+        var a= arguments;
+        return a
+    }
+    // callee 用法
+    var sum = function (n) {
+        if (1 === n) {
+            return 1;
+        } else {
+            return n + arguments.callee(n - 1);
+        }
+    }
+    alert(sum(6));
+
+</script>
+</body>
+</html>
