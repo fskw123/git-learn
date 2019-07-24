@@ -1,0 +1,35 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM相关操作</title>
+
+</head>
+<body id="container" style="width: 200px; height: 5000px; background-color: #5a9cff">
+<div style="width: 200px; height: 12000px;background-color: yellow" id="box"></div>
+</body>
+<script>
+   let obj = {
+       a: 1,
+       b: this.a // undefined, 如果是a，则报错 function（）{return this.a}
+   };
+   console.log(obj);
+
+   let a = /1/;
+   console.log(a.test('002')); // 注意转化为字符串
+   let ele = document.getElementById('container');
+   let ht = document.getElementsByTagName('html');
+   window.onscroll = function (e) {
+       console.log(ht[0].scrollTop, ht[0].clientHeight, ele.clientHeight, window.screen.height,
+           window.document.body.offsetHeight, window.document.body.clientHeight, document.documentElement.clientHeight);
+   }
+   // 258 3868 5000 1500 5000 5000 3868
+   // window.screen.height 分辨率值
+    // 获得屏幕的宽高
+    //
+</script>
+<style>
+
+</style>
+</html>

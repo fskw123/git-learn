@@ -6,39 +6,87 @@
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 </head>
 <body>
-<div id="app"></div>
+<div id="app">
+    <box>
+    </box>
+</div>
 
 <script>
     // 函数调用的this 问题
     // 父组件向子组件传递参数，函数，事件
     // 1,prop
-    // 2,this.$refs.refName.method
-    // 3,this.$children
+    // 2，$parent
+
     // 子组件向父组件传递参数，函数，事件
     // 1,emit
-    // 2, $parent
-    // 3,
-// 父子组件之间传递函数
-    // 1,
-    // 2, prop
-export default {
-    props: {
-        fatherMethod: {
-            type: Function,
-            default: null
-        }
-    },
-    methods: {
-        childMethod() {
-            if (this.fatherMethod) {
-                this.fatherMethod();
+    // 2,this.$children
+    // 3, this.$refs.refName.method
+
+    const child = {
+        template: '<div>这是子组件<button @click="getMsg">按下传值</button><p>这是一行文字</p></div>',
+        data: function () {
+            return {
+                msg: 'alright',
+                count: 6,
+                userName: 'Alice',
+            }
+        },
+        props: ['func'], // 数组,带引号
+        methods: {
+            getMsg() {
+                // console.log(this.msg);
+                this.$emit('custEvent', this.increment); // 作为返回值
+                this.func.bind(this)();
+            },
+            increment: function (x) {
+                x++;
+                console.log(this.msg);
+                console.log(x);
+                console.log(this);
             }
         }
-    }
-};
-    // 3, this.$parent.fatherMethod()子组件调用父组件方法;
 
-    // 4, emit触发事件
+    };
+    const box = {
+        template: '<div>这是父组件<child  ref="childComp" :func="getMsg"></child><p>{{msg}}</p><p>{{count}}</p></div>',
+        data: function () {
+            return {
+                msg: 'hello',
+                count: 3,
+                userName: 'jerry',
+            }
+        },
+        methods: {
+            getMsg() {
+                console.log(this.userName);
+            },
+            increment(x) {
+                x++;
+            },
+            msgChange(x) {
+                this.msg += ('\n'+ x);
+            },
+            funcTrans(cb) {
+                cb.call(this, this.count); // this.count是传值, this无效(不能修改this指向?）
+                // console.log(cb);
+                console.log(typeof cb); // function
+                this.$refs.childComp.increment.call(this, this.count);
+            }
+        },
+        components: {
+            child,
+        }
+
+    };
+
+    const vm = new Vue({
+        el: '#app',
+        data: '',
+        components: {
+            box,
+
+        }
+    })
 </script>
 <style>
 
